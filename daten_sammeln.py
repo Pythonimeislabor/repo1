@@ -1,8 +1,10 @@
 import cv2
 import time
 
-zahl = 0
 
+zahl = 1
+
+bilder_gemacht = 0
 cam = cv2.VideoCapture(0)
 for i in range(10000):
     _, frame = cam.read()
@@ -16,7 +18,9 @@ for i in range(10000):
     
     if key == ord(" "):
         cv2.imwrite("unsere_daten/"+str(zahl)+"/"+str(zahl)+"_"+str(time.time())+".jpg", frame)
-        
+        bilder_gemacht+=1
+        print(bilder_gemacht)
+    
     if key == 27:
         break
         
