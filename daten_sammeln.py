@@ -1,18 +1,18 @@
 import cv2
-import time
+import numpy as np
 
-
-zahl = 1
+zahl = 0
 
 bilder_gemacht = 0
 cam = cv2.VideoCapture(0)
 for i in range(10000):
     _, frame = cam.read()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    frame = cv2.blur(frame,(15,15))
+    frame = cv2.blur(frame,(25,25))
     frame = cv2.resize(frame,(28,28))
-    
-    cv2.imshow("",cv2.resize(frame,(400,400)))
+    frame = cv2.adaptiveThreshold(frame, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 5, 7);
+    frame = np.max(frame) - frame
+    cv2.imshow("",frame)
     key =  cv2.waitKey(30)
     
     
